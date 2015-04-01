@@ -1,0 +1,16 @@
+.wrapper {
+	width: 970px;
+}
+
+.banner {
+	background-image: url("logo.png");
+	background-repeat: no-repeat;
+}
+
+.banner p {
+	display: inline-block;
+}
+
+.nav li {
+	display: inline-block;
+}
