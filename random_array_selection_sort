@@ -1,0 +1,25 @@
+function random() {
+  var arr = [];
+  for(var i = 0; i <= 100; i++){
+    random_nums = Math.floor(Math.random()*10000);
+    arr.push(random_nums);
+  } 
+  
+  var length = arr.length;
+  
+  for(var j = 0; j < length; j++){
+    var c_min = j;
+    for(var k = j + 1; k < length; k++){
+      if(arr[k] < arr[c_min]) {
+        c_min = k;
+      }
+    }
+    if(c_min != j) {
+      var temp = arr[j];
+      arr[j] = arr[c_min];
+      arr[c_min] = temp;
+    }
+  }
+  return arr; 
+}  
+console.log(random());
