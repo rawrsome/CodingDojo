@@ -1,0 +1,36 @@
+<?php
+function random() 
+{
+	$arr = array();
+	
+	for ($i = 0; $i < 100; $i++) {
+		$rand_nums = rand(0,10000);
+		array_push($arr, $rand_nums);
+	}
+
+	$length = count($arr);
+
+	for ($j = 0; $j < $length; $j++) 
+	{
+		$c_min = $j; // c_min holds the current minimum number
+	
+		for ($k = $j + 1; $k < $length; $k++) 
+		{ 
+			if ($arr[$k] < $arr[$c_min]) // numbers are compared
+			{
+				$c_min = $k; // swap the current number with c_min if a small value is found
+			}	
+		}
+		if($c_min != $j) // if current c_min number =! current number then swap
+		{
+			// magic of swapping
+			$temp = $arr[$j];
+			$arr[$j] = $arr[$c_min];
+			$arr[$c_min] = $temp;
+		}
+	}
+	var_dump($arr);
+	return $arr;
+}
+random();
+?>
