@@ -1,0 +1,69 @@
+<?php
+	session_start();
+	require('new_connection.php');
+	// echo "you made it to process page!";
+
+
+	// since there's 2 hidden input type you need to speicified the second one with "&& $_POST['action'] =='register'"
+	if(isset($_POST['action']) && $_POST['action'] == 'register')
+	{
+		// if it is set do something 
+		// call to function
+		register_user($_POST); // use the ACTUAL POST!
+
+
+		// var_dump($_POST); // checking if the index $_POST comes to the process page and hidden input. Should return an array with info from index page
+	}
+
+	// second hidden input
+	if(isset($_POST['action']) && $_POST['action'] == 'login')
+	{
+		login_user($_POST);
+	}
+
+
+	
+
+
+
+	// only passing a parameter '$post' to remind what to do with the $_POST variable on top
+	function register_user($post) // just a parameter called post
+	{	// setting errors
+		$_SESSION['errors'] = array();
+
+		if(empty($post['first_name'])) // $_POST info to be validated
+		{
+			// error message add to array
+			$_SESSION['errors'][] = "first name can't be blank!";
+		}
+		if(empty($post['last_name']))
+		{
+			$_SESSION['errors'][] = "last name can't be blank!";
+		}
+		// checking if 'password' and 'confirm_password' is the same
+		if($post['password'] !== $post['confirm_password'])
+		{
+		
+			$_SESSION['errors'][] = "passwords must match!";
+		}
+
+		// redirect back to index page after validations
+		// there should be any echo before 'header' or will give error
+		header('location: login_registration_index.php');
+		die(); // kills sessions
+		
+		// checking if the error message is pushed to an array
+		// var_dump($_SESSION);
+	}
+
+	
+
+
+
+	function login_user($post) // just a parameter called post
+	{
+
+	}
+
+
+?>
