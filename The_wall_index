@@ -1,0 +1,61 @@
+<?php
+	session_start();
+
+
+?>
+
+
+<html>
+<head>
+	<title>Login and Registration</title>
+	<style type="text/css">
+		* {
+			font-family: sans-serif;
+		}
+	</style>
+</head>
+<body>
+	<?php
+		// if there's anyting thing inside $_SESSION['errors'] I want the computer to do something
+		if(isset($_SESSION['errors']))
+		{
+			// doesn't require a $key because all the info is in $value = $error
+			foreach ($_SESSION['errors'] as $key => $error) 
+			{
+				echo "<p class='error'>{$error} </p>";
+			}
+			// unset so the error message will not linger
+			unset($_SESSION['errors']);
+		}
+
+
+	?>
+
+	<h2>Register</h2>
+	<form action='login_registration_process.php' method='post'>
+
+		<!-- process page will understand "value='register'" -->
+		<input type='hidden' name='action' value='register'>
+		
+
+		First name: <input type='text' name='first_name' placeholder='First name'><br>
+		Last name: <input type='text' name='last_name' placeholder='Last name'><br>
+		Email address: <input type='text' name='email' placeholder='Email'><br>
+		Password: <input type='password' name='password' placeholder='Password'><br>
+		Confirm Password: <input type='password' name='confirm_password' placeholder='Confirm Password'><br>
+		<input type='submit' value='register'>
+	</form>
+
+	<h2>Login</h2>
+	<form action='login_registration_process.php' method='post'>
+
+		<!-- process page will understand "value='login'" -->
+		<input type='hidden' name='action' value='login'>
+
+		Email address: <input type='text' name='email' placeholder='Email'><br>
+		Password: <input type='password' name='password' placeholder='Password'><br>
+		<input type='submit' value='login'>
+	</form>
+
+</body>
+</html>
